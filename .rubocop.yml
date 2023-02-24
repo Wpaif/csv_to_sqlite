@@ -1,0 +1,10 @@
+AllCops:
+  Include:
+    - "**/*.rb"
+
+Style/FreezeStringLiterals:
+  Enabled: true
+
+Style/CommentedKeyword:
+  Enabled: false
+
