@@ -5,6 +5,7 @@ source 'https://rubygems.org'
 gem 'sqlite3'
 
 group :development, :test do
+  gem 'yard'
   gem 'faker'
   gem 'rails'
   gem 'rspec'

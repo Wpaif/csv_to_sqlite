@@ -1,2 +1,4 @@
 .byebug_history
 /tmp/*.*
+/doc
+.yardoc
