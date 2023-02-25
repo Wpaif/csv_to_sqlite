@@ -2,9 +2,14 @@ AllCops:
   Include:
     - "**/*.rb"
 
-Style/FreezeStringLiterals:
+Style/StringLiterals:
   Enabled: true
 
 Style/CommentedKeyword:
   Enabled: false
 
+Style/Documentation:
+    Enabled: false
+
+Style/BlockComments:
+  Enabled: false

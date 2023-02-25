@@ -9,4 +9,5 @@ group :development, :test do
   gem 'rails'
   gem 'rspec'
   gem 'rubocop'
+  gem 'byebug'
 end
