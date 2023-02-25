@@ -1,31 +1,28 @@
 # frozen_string_literal: true
 
-require 'byebug'
+require 'csv'
 
 class CSVHandler
   def initialize(file_path)
-    @file_path = "#{File.dirname(__dir__)}/#{file_path}"
+    @file_path = File.join(File.dirname(__dir__), file_path)
   end
 
   def convert_to_hash
-    arr = []
-    collect_rows.count.times do |i|
-      arr << collect_header.map(&:downcase).map(&:to_sym).zip(collect_rows[i]).to_h
+    headers = collect_headers
+    rows = collect_rows
+
+    rows.map do |row|
+      headers.map(&:downcase).map(&:to_sym).zip(row).to_h
     end
-    arr
   end
 
   private
 
-  def collect_header
+  def collect_headers
     CSV.read(@file_path, headers: true).headers
   end
 
   def collect_rows
-    rows = []
-    CSV.foreach(@file_path, headers: true) do |row|
-      rows << row.fields
-    end
-    rows
+    CSV.read(@file_path, headers: true).map(&:to_h)
   end
 end
