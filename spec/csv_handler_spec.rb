@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require 'faker'
-require 'csv'
-require_relative '../../lib/csv_handler'
+require_relative '../lib/csv_handler'
 
 describe CSVHandler do
   describe '#convert_to_hash' do
@@ -37,7 +35,6 @@ describe CSVHandler do
       expect(array_of_hashs).not_to be_empty
       expect(array_of_hashs.count).to eq(10)
       expect(array_of_hashs.first.keys).to eq(headers.map(&:downcase).map(&:to_sym))
-      puts array_of_hashs.first
     end
 
     it 'The hashes was in valid format' do
