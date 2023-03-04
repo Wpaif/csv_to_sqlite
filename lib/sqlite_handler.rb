@@ -19,9 +19,40 @@ class SqliteHandler
     raise "The table '#{table_name}' already exists." if table_exists?(table_name)
 
     columns_sql = columns.map { |column| column_sql(column) }.join(', ')
-
     query = "CREATE TABLE #{table_name} (#{columns_sql});"
     @db.execute(query)
+  end
+
+  # Public: Inserts data into a specified table in the database.
+  #
+  # table_name - The String name of the table to insert data into.
+  # data - The Array of Arrays containing data to be inserted.
+  #        Each inner array represents a row of data and must have the same number of elements as the table's columns.
+  #
+  # Examples
+  #
+  #   db.insert_data('People', [[1, 'John Doe', 25, 'john.doe@example.com', '2022-01-01 10:00:00', '2022-01-01 10:00:00'],
+  #                             [2, 'Jane Smith', 30, 'jane.smith@example.com', '2022-01-02 11:00:00', '2022-01-02 11:00:00'],
+  #                             [3, 'Bob Johnson', 35, 'bob.johnson@example.com', '2022-01-03 12:00:00', '2022-01-03 12:00:00']])
+  #   # => nil
+  #
+  # Raises RuntimeError if the number of elements in a row of data does not match the number of columns in the table.
+  #
+  # Returns nil.
+  def insert_data(table_name, data)
+    return if data.empty?
+
+    columns = @db.table_info(table_name).map { |column| column['name'] }
+
+    raise 'Invalid number of columns in data' unless data.all? { |tuple| tuple.size == columns.size }
+
+    sql = "INSERT INTO #{table_name} (#{columns.join(', ')}) VALUES (#{(['?'] * columns.size).join(', ')})"
+
+    @db.transaction do
+      data.each do |tuple|
+        @db.execute(sql, *tuple)
+      end
+    end
   end
 
   private

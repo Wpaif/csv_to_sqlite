@@ -4,6 +4,7 @@ require:
 AllCops:
   Include:
     - "**/*.rb"
+  NewCops: enable
 
 Style/StringLiterals:
   Enabled: true
@@ -15,6 +16,9 @@ Style/Documentation:
   Enabled: false
 
 Style/BlockComments:
+  Enabled: false
+
+Layout/LineLength:
   Enabled: false
 
 # Configurações para o diretório /spec
@@ -31,4 +35,7 @@ RSpec/FilePath:
   Enabled: false
 
 RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/NestedGroups: 
   Enabled: false
