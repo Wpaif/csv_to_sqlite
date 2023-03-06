@@ -49,7 +49,15 @@ class CSVHandler
   #
   # @return [Array<Symbol>] An array of symbols representing the headers in the CSV file
   def csv_headers
-    CSV.read(@file_path, headers: true).headers.map(&:downcase).map(&:to_sym)
+    CSV.read(@file_path, headers: true).headers.map { |header| normalize_string(header).to_sym }
+  end
+
+  # Normalize a string by converting it to lowercase, removing diacritical marks and replacing spaces and slashes with underscores.
+  #
+  # @param str [String] the string to be normalized
+  # @return [String] the normalized string
+  def normalize_string(str)
+    str.downcase.strip.tr('áàâãäéèêëíìîïóòôõöúùûüç', 'aaaaaeeeeiiiiooooouuuuc').gsub(%r{\s|/}, '_')
   end
 
   # Retrieves the rows from the CSV file
