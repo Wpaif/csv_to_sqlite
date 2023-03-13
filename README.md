@@ -8,7 +8,7 @@ To install the program, follow these steps:
 
 1. Clone this repository to your local machine using:
 ```bash
-$ git clone https://github.com/Wpaif/csv_to_sqlite.git
+git clone https://github.com/Wpaif/csv_to_sqlite.git
 ```
 2. Run `bundle install` to install the required gems.
 
@@ -17,7 +17,7 @@ $ git clone https://github.com/Wpaif/csv_to_sqlite.git
 To use the program, run the following command:
 
 ```bash
-$ ruby main.rb path/to/csv/file.csv table_name
+ruby main.rb path/to/csv/file.csv table_name
 ```
 
 Replace `path/to/csv/file.csv` with the path to your **CSV file**, and `table_name` with the name of the **SQLite table** you want to create.
@@ -27,7 +27,7 @@ Replace `path/to/csv/file.csv` with the path to your **CSV file**, and `table_na
 To run the tests, run the following command:
 
 ```bash
-$ bundle exec rspec
+bundle exec rspec
 ```
 
 This will run the test suite located in the `spec` directory.
