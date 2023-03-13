@@ -26,10 +26,6 @@ describe CSVHandler do
       described_class.new(file_path)
     end
 
-    after do
-      File.delete(file_path)
-    end
-
     it 'converts CSV to an array of hashes' do
       expect(array_of_hashs).to be_an_instance_of(Array)
       expect(array_of_hashs).not_to be_empty

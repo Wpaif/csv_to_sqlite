@@ -73,6 +73,8 @@ class SqliteHandler
   # @param precision [Integer] The column precision (if applicable).
   # @return [String] The SQL data type for the specified column type, size, and precision.
   def column_type_sql(type, size, precision)
+    return if [type, size, precision].compact.none?
+
     sql_types = {
       'integer' => 'INTEGER',
       'float' => 'REAL',
