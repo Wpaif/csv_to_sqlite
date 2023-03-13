@@ -42,4 +42,4 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/Wpaif/
 
 ## Credits
 
-This program was created by Wpaif."
+This program was created by Wpaif.
